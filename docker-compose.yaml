@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  web:
+    image: lepolesa/laravel
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: ["/bin/sh", "-x", "/app/quotation/script.sh"]
+    depends_on: 
+      - mysql
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quotations
